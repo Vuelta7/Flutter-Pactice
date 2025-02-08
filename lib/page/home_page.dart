@@ -1,91 +1,113 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-class NotiService {
-  final notificationsPlugin = FlutterLocalNotificationsPlugin();
+// class NotiService {
+//   final notificationsPlugin = FlutterLocalNotificationsPlugin();
 
-  final bool _isInitialized = false;
+//   final bool _isInitialized = false;
 
-  bool get initialized => _isInitialized;
+//   bool get initialized => _isInitialized;
 
-  Future<void> initNotification() async {
-    if (_isInitialized) return;
+//   Future<void> initNotification() async {
+//     if (_isInitialized) return;
 
-    const initSettingsAndroid =
-        AndroidInitializationSettings('mipmap/ic_launcher');
+//     const initSettingsAndroid =
+//         AndroidInitializationSettings('mipmap/ic_launcher');
 
-    const initSettingsIOS = DarwinInitializationSettings(
-      requestAlertPermission: true,
-      requestBadgePermission: true,
-      requestSoundPermission: true,
-    );
+//     const initSettingsIOS = DarwinInitializationSettings(
+//       requestAlertPermission: true,
+//       requestBadgePermission: true,
+//       requestSoundPermission: true,
+//     );
 
-    const initSettings = InitializationSettings(
-      android: initSettingsAndroid,
-      iOS: initSettingsIOS,
-    );
+//     const initSettings = InitializationSettings(
+//       android: initSettingsAndroid,
+//       iOS: initSettingsIOS,
+//     );
 
-    await notificationsPlugin.initialize(initSettings);
-  }
+//     await notificationsPlugin.initialize(initSettings);
+//   }
 
-  NotificationDetails notificationDetails() {
-    return const NotificationDetails(
-      android: AndroidNotificationDetails(
-        'daily_channel_id',
-        'Daily Notification',
-        channelDescription: 'Daily Notification',
-        importance: Importance.max,
-        priority: Priority.high,
-        sound: RawResourceAndroidNotificationSound('notification'),
-      ),
-      iOS: DarwinNotificationDetails(
-        sound: 'assets/notification.mp3',
-      ),
-    );
-  }
+//   NotificationDetails notificationDetails() {
+//     return const NotificationDetails(
+//       android: AndroidNotificationDetails(
+//         'daily_channel_id',
+//         'Daily Notification',
+//         channelDescription: 'Daily Notification',
+//         importance: Importance.max,
+//         priority: Priority.high,
+//         sound: RawResourceAndroidNotificationSound('notification'),
+//       ),
+//       iOS: DarwinNotificationDetails(
+//         sound: 'assets/notification.mp3',
+//       ),
+//     );
+//   }
 
-  Future<void> showNotification({
-    int id = 0,
-    String? title,
-    String? body,
-  }) async {
-    await notificationsPlugin.show(
-      id,
-      title,
-      body,
-      const NotificationDetails(),
-    );
-  }
-}
+//   Future<void> showNotification({
+//     int id = 0,
+//     String? title,
+//     String? body,
+//   }) async {
+//     await notificationsPlugin.show(
+//       id,
+//       title,
+//       body,
+//       const NotificationDetails(),
+//     );
+//   }
+// }
 
-class TestNotification extends StatelessWidget {
-  const TestNotification({super.key});
+// class TestNotification extends StatelessWidget {
+//   const TestNotification({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('Test Notification'),
-          onPressed: () {
-            NotiService().showNotification(
-              title: 'Test Notification',
-              body: 'This is a test notification',
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: ElevatedButton(
+//           child: const Text('Test Notification'),
+//           onPressed: () {
+//             NotiService().showNotification(
+//               title: 'Test Notification',
+//               body: 'This is a test notification',
+//             );
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }
 
+// // // import 'package:flutter/material.dart';
+// // // import 'package:practice_app/page/home_page.dart';
+
+// // // void main() {
+// // //   NotiService().initNotification();
+// // //   runApp(const MyApp());
+// // // }
+
+// // // class MyApp extends StatelessWidget {
+// // //   const MyApp({super.key});
+
+// // //   @override
+// // //   Widget build(BuildContext context) {
+// // //     return MaterialApp(
+// // //       debugShowCheckedModeBanner: false,
+// // //       home: TestNotification(),
+// // //     );
+// // //   }
+// // // }
+
+// // import 'dart:async';
+
+// // import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+// // import 'package:auto_size_text/auto_size_text.dart';
+// // import 'package:circular_reveal_animation/circular_reveal_animation.dart';
 // // import 'package:flutter/material.dart';
-// // import 'package:practice_app/page/home_page.dart';
+// // import 'package:flutter/rendering.dart';
 
-// // void main() {
-// //   NotiService().initNotification();
-// //   runApp(const MyApp());
-// // }
+// // void main() => runApp(MyApp());
 
 // // class MyApp extends StatelessWidget {
 // //   const MyApp({super.key});
@@ -94,386 +116,533 @@ class TestNotification extends StatelessWidget {
 // //   Widget build(BuildContext context) {
 // //     return MaterialApp(
 // //       debugShowCheckedModeBanner: false,
-// //       home: TestNotification(),
+// //       title: 'Flutter Demo',
+// //       theme: AppTheme.get(isLight: true),
+// //       darkTheme: AppTheme.get(isLight: false),
+// //       home: MyHomePage(title: 'Animated Navigation Bottom Bar'),
 // //     );
 // //   }
 // // }
 
-// import 'dart:async';
+// // class MyHomePage extends StatefulWidget {
+// //   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
-// import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-// import 'package:auto_size_text/auto_size_text.dart';
-// import 'package:circular_reveal_animation/circular_reveal_animation.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter/rendering.dart';
+// //   final String title;
 
-// void main() => runApp(MyApp());
+// //   @override
+// //   _MyHomePageState createState() => _MyHomePageState();
+// // }
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
+// // class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
+// //   final autoSizeGroup = AutoSizeGroup();
+// //   var _bottomNavIndex = 0;
+
+// //   late AnimationController _fabAnimationController;
+// //   late AnimationController _borderRadiusAnimationController;
+// //   late Animation<double> fabAnimation;
+// //   late Animation<double> borderRadiusAnimation;
+// //   late CurvedAnimation fabCurve;
+// //   late CurvedAnimation borderRadiusCurve;
+// //   late AnimationController _hideBottomBarAnimationController;
+
+// //   final iconList = <IconData>[
+// //     Icons.brightness_5,
+// //     Icons.brightness_4,
+// //     Icons.brightness_6,
+// //     Icons.brightness_7,
+// //   ];
+
+// //   @override
+// //   void initState() {
+// //     super.initState();
+
+// //     _fabAnimationController = AnimationController(
+// //       duration: Duration(milliseconds: 500),
+// //       vsync: this,
+// //     );
+// //     _borderRadiusAnimationController = AnimationController(
+// //       duration: Duration(milliseconds: 500),
+// //       vsync: this,
+// //     );
+// //     fabCurve = CurvedAnimation(
+// //       parent: _fabAnimationController,
+// //       curve: Interval(0.5, 1.0, curve: Curves.fastOutSlowIn),
+// //     );
+// //     borderRadiusCurve = CurvedAnimation(
+// //       parent: _borderRadiusAnimationController,
+// //       curve: Interval(0.5, 1.0, curve: Curves.fastOutSlowIn),
+// //     );
+
+// //     fabAnimation = Tween<double>(begin: 0, end: 1).animate(fabCurve);
+// //     borderRadiusAnimation = Tween<double>(begin: 0, end: 1).animate(
+// //       borderRadiusCurve,
+// //     );
+
+// //     _hideBottomBarAnimationController = AnimationController(
+// //       duration: Duration(milliseconds: 200),
+// //       vsync: this,
+// //     );
+
+// //     Future.delayed(
+// //       Duration(seconds: 1),
+// //       () => _fabAnimationController.forward(),
+// //     );
+// //     Future.delayed(
+// //       Duration(seconds: 1),
+// //       () => _borderRadiusAnimationController.forward(),
+// //     );
+// //   }
+
+// //   bool onScrollNotification(ScrollNotification notification) {
+// //     if (notification is UserScrollNotification &&
+// //         notification.metrics.axis == Axis.vertical) {
+// //       switch (notification.direction) {
+// //         case ScrollDirection.forward:
+// //           _hideBottomBarAnimationController.reverse();
+// //           _fabAnimationController.forward(from: 0);
+// //           break;
+// //         case ScrollDirection.reverse:
+// //           _hideBottomBarAnimationController.forward();
+// //           _fabAnimationController.reverse(from: 1);
+// //           break;
+// //         case ScrollDirection.idle:
+// //           break;
+// //       }
+// //     }
+// //     return false;
+// //   }
+
+// //   @override
+// //   Widget build(BuildContext context) {
+// //     final colors = Theme.of(context).extension<CustomColorsTheme>()!;
+// //     return Scaffold(
+// //       extendBody: true,
+// //       appBar: AppBar(
+// //         title: Text(
+// //           widget.title,
+// //           style: TextStyle(color: Colors.white),
+// //         ),
+// //       ),
+// //       body: NotificationListener<ScrollNotification>(
+// //         onNotification: onScrollNotification,
+// //         child: NavigationScreen(iconList[_bottomNavIndex]),
+// //       ),
+// //       floatingActionButton: FloatingActionButton(
+// //         child: Icon(
+// //           Icons.brightness_3,
+// //           color: AppTheme.colorGray,
+// //         ),
+// //         onPressed: () {
+// //           _fabAnimationController.reset();
+// //           _borderRadiusAnimationController.reset();
+// //           _borderRadiusAnimationController.forward();
+// //           _fabAnimationController.forward();
+// //         },
+// //       ),
+// //       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+// //       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
+// //         itemCount: iconList.length,
+// //         tabBuilder: (int index, bool isActive) {
+// //           final color = isActive
+// //               ? colors.activeNavigationBarColor
+// //               : colors.notActiveNavigationBarColor;
+// //           return Column(
+// //             mainAxisSize: MainAxisSize.min,
+// //             mainAxisAlignment: MainAxisAlignment.center,
+// //             children: [
+// //               Icon(
+// //                 iconList[index],
+// //                 size: 24,
+// //                 color: color,
+// //               ),
+// //               const SizedBox(height: 4),
+// //               Padding(
+// //                 padding: const EdgeInsets.symmetric(horizontal: 8),
+// //                 child: AutoSizeText(
+// //                   "brightness $index",
+// //                   maxLines: 1,
+// //                   style: TextStyle(color: color),
+// //                   group: autoSizeGroup,
+// //                 ),
+// //               )
+// //             ],
+// //           );
+// //         },
+// //         backgroundColor: colors.bottomNavigationBarBackgroundColor,
+// //         activeIndex: _bottomNavIndex,
+// //         splashColor: colors.activeNavigationBarColor,
+// //         notchAndCornersAnimation: borderRadiusAnimation,
+// //         splashSpeedInMilliseconds: 300,
+// //         notchSmoothness: NotchSmoothness.defaultEdge,
+// //         gapLocation: GapLocation.center,
+// //         leftCornerRadius: 32,
+// //         rightCornerRadius: 32,
+// //         onTap: (index) => setState(() => _bottomNavIndex = index),
+// //         hideAnimationController: _hideBottomBarAnimationController,
+// //         shadow: BoxShadow(
+// //           offset: Offset(0, 1),
+// //           blurRadius: 12,
+// //           spreadRadius: 0.5,
+// //           color: colors.activeNavigationBarColor,
+// //         ),
+// //       ),
+// //     );
+// //   }
+// // }
+
+// // class NavigationScreen extends StatefulWidget {
+// //   final IconData iconData;
+
+// //   NavigationScreen(this.iconData) : super();
+
+// //   @override
+// //   _NavigationScreenState createState() => _NavigationScreenState();
+// // }
+
+// // class _NavigationScreenState extends State<NavigationScreen>
+// //     with TickerProviderStateMixin {
+// //   late AnimationController _controller;
+// //   late Animation<double> animation;
+
+// //   @override
+// //   void didUpdateWidget(NavigationScreen oldWidget) {
+// //     super.didUpdateWidget(oldWidget);
+// //     if (oldWidget.iconData != widget.iconData) {
+// //       _startAnimation();
+// //     }
+// //   }
+
+// //   @override
+// //   void initState() {
+// //     _controller = AnimationController(
+// //       vsync: this,
+// //       duration: Duration(milliseconds: 1000),
+// //     );
+// //     animation = CurvedAnimation(
+// //       parent: _controller,
+// //       curve: Curves.easeIn,
+// //     );
+// //     _controller.forward();
+// //     super.initState();
+// //   }
+
+// //   _startAnimation() {
+// //     _controller = AnimationController(
+// //       vsync: this,
+// //       duration: Duration(milliseconds: 1000),
+// //     );
+// //     animation = CurvedAnimation(
+// //       parent: _controller,
+// //       curve: Curves.easeIn,
+// //     );
+// //     _controller.forward();
+// //   }
+
+// //   @override
+// //   void dispose() {
+// //     _controller.dispose();
+// //     super.dispose();
+// //   }
+
+// //   @override
+// //   Widget build(BuildContext context) {
+// //     final colors = Theme.of(context).extension<CustomColorsTheme>()!;
+// //     return Container(
+// //       color: Theme.of(context).colorScheme.background,
+// //       child: ListView(
+// //         children: [
+// //           SizedBox(height: 64),
+// //           Center(
+// //             child: CircularRevealAnimation(
+// //               animation: animation,
+// //               centerOffset: Offset(80, 80),
+// //               maxRadius: MediaQuery.of(context).size.longestSide * 1.1,
+// //               child: Icon(
+// //                 widget.iconData,
+// //                 color: colors.activeNavigationBarColor,
+// //                 size: 160,
+// //               ),
+// //             ),
+// //           ),
+// //         ],
+// //       ),
+// //     );
+// //   }
+// // }
+
+// // class AppTheme {
+// //   static HexColor colorOrange = HexColor('#FFA400');
+// //   static HexColor colorGray = HexColor('#373A36');
+
+// //   static ThemeData get({required bool isLight}) {
+// //     final base = isLight ? ThemeData.light() : ThemeData.dark();
+// //     return base.copyWith(
+// //       extensions: [
+// //         CustomColorsTheme(
+// //           colorLabelColor: isLight ? Colors.grey : const Color(0xFF7A7FB0),
+// //           bottomNavigationBarBackgroundColor: isLight ? Colors.blue : colorGray,
+// //           activeNavigationBarColor: isLight ? Colors.yellow : colorOrange,
+// //           notActiveNavigationBarColor: Colors.white,
+// //           shadowNavigationBarColor: isLight ? Colors.blue : colorOrange,
+// //         )
+// //       ],
+// //       floatingActionButtonTheme: FloatingActionButtonThemeData(
+// //         backgroundColor: isLight ? Colors.yellow : colorOrange,
+// //       ),
+// //       appBarTheme: AppBarTheme(
+// //         backgroundColor: isLight ? Colors.blue : colorGray,
+// //       ),
+// //       colorScheme: base.colorScheme.copyWith(
+// //         surface: isLight ? Colors.blue : colorGray,
+// //         background: isLight ? Colors.white : colorGray,
+// //       ),
+// //     );
+// //   }
+// // }
+
+// // class HexColor extends Color {
+// //   HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+
+// //   static int _getColorFromHex(String hexColor) {
+// //     hexColor = hexColor.toUpperCase().replaceAll('#', '');
+// //     if (hexColor.length == 6) {
+// //       hexColor = 'FF' + hexColor;
+// //     }
+// //     return int.parse(hexColor, radix: 16);
+// //   }
+// // }
+
+// // @immutable
+// // class CustomColorsTheme extends ThemeExtension<CustomColorsTheme> {
+// //   const CustomColorsTheme({
+// //     required this.bottomNavigationBarBackgroundColor,
+// //     required this.colorLabelColor,
+// //     required this.activeNavigationBarColor,
+// //     required this.notActiveNavigationBarColor,
+// //     required this.shadowNavigationBarColor,
+// //   });
+
+// //   final Color bottomNavigationBarBackgroundColor;
+// //   final Color colorLabelColor;
+// //   final Color activeNavigationBarColor;
+// //   final Color notActiveNavigationBarColor;
+// //   final Color shadowNavigationBarColor;
+
+// //   @override
+// //   CustomColorsTheme copyWith({
+// //     Color? bottomNavigationBarBackgroundColor,
+// //     Color? colorLabelColor,
+// //     Color? activeNavigationBarColor,
+// //     Color? notActiveNavigationBarColor,
+// //     Color? shadowNavigationBarColor,
+// //   }) {
+// //     return CustomColorsTheme(
+// //       bottomNavigationBarBackgroundColor: bottomNavigationBarBackgroundColor ??
+// //           this.bottomNavigationBarBackgroundColor,
+// //       colorLabelColor: colorLabelColor ?? this.colorLabelColor,
+// //       activeNavigationBarColor:
+// //           activeNavigationBarColor ?? this.activeNavigationBarColor,
+// //       notActiveNavigationBarColor:
+// //           notActiveNavigationBarColor ?? this.notActiveNavigationBarColor,
+// //       shadowNavigationBarColor:
+// //           shadowNavigationBarColor ?? this.shadowNavigationBarColor,
+// //     );
+// //   }
+
+// //   @override
+// //   CustomColorsTheme lerp(
+// //     ThemeExtension<CustomColorsTheme>? other,
+// //     double t,
+// //   ) {
+// //     if (other is! CustomColorsTheme) {
+// //       return this;
+// //     }
+// //     return CustomColorsTheme(
+// //       bottomNavigationBarBackgroundColor: Color.lerp(
+// //               bottomNavigationBarBackgroundColor,
+// //               other.bottomNavigationBarBackgroundColor,
+// //               t) ??
+// //           bottomNavigationBarBackgroundColor,
+// //       colorLabelColor: Color.lerp(colorLabelColor, other.colorLabelColor, t) ??
+// //           colorLabelColor,
+// //       activeNavigationBarColor: Color.lerp(
+// //               activeNavigationBarColor, other.activeNavigationBarColor, t) ??
+// //           activeNavigationBarColor,
+// //       notActiveNavigationBarColor: Color.lerp(notActiveNavigationBarColor,
+// //               other.notActiveNavigationBarColor, t) ??
+// //           notActiveNavigationBarColor,
+// //       shadowNavigationBarColor: Color.lerp(
+// //               shadowNavigationBarColor, other.shadowNavigationBarColor, t) ??
+// //           shadowNavigationBarColor,
+// //     );
+// //   }
+// // }
+
+// class TimerApp extends StatelessWidget {
+//   const TimerApp({super.key});
 
 //   @override
 //   Widget build(BuildContext context) {
 //     return MaterialApp(
 //       debugShowCheckedModeBanner: false,
-//       title: 'Flutter Demo',
-//       theme: AppTheme.get(isLight: true),
-//       darkTheme: AppTheme.get(isLight: false),
-//       home: MyHomePage(title: 'Animated Navigation Bottom Bar'),
+//       home: TimerScreen(),
 //     );
 //   }
 // }
 
-// class MyHomePage extends StatefulWidget {
-//   const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-//   final String title;
+// class TimerScreen extends StatefulWidget {
+//   const TimerScreen({super.key});
 
 //   @override
-//   _MyHomePageState createState() => _MyHomePageState();
+//   _TimerScreenState createState() => _TimerScreenState();
 // }
 
-// class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
-//   final autoSizeGroup = AutoSizeGroup();
-//   var _bottomNavIndex = 0;
+// class _TimerScreenState extends State<TimerScreen> {
+//   int selectedHours = 0;
+//   int selectedMinutes = 7;
+//   int selectedSeconds = 0;
 
-//   late AnimationController _fabAnimationController;
-//   late AnimationController _borderRadiusAnimationController;
-//   late Animation<double> fabAnimation;
-//   late Animation<double> borderRadiusAnimation;
-//   late CurvedAnimation fabCurve;
-//   late CurvedAnimation borderRadiusCurve;
-//   late AnimationController _hideBottomBarAnimationController;
-
-//   final iconList = <IconData>[
-//     Icons.brightness_5,
-//     Icons.brightness_4,
-//     Icons.brightness_6,
-//     Icons.brightness_7,
+//   List<Map<String, dynamic>> tasks = [
+//     {"icon": Icons.work, "label": "Study", "time": "00:09:00"},
+//     {"icon": Icons.timer, "label": "Rest", "time": "00:07:00"},
+//     {
+//       "icon": Icons.fitness_center,
+//       "label": "B Muscle Re...",
+//       "time": "00:02:00"
+//     },
+//     {
+//       "icon": Icons.hourglass_bottom,
+//       "label": "S Muscle Re...",
+//       "time": "00:00:30"
+//     },
 //   ];
 
 //   @override
-//   void initState() {
-//     super.initState();
-
-//     _fabAnimationController = AnimationController(
-//       duration: Duration(milliseconds: 500),
-//       vsync: this,
-//     );
-//     _borderRadiusAnimationController = AnimationController(
-//       duration: Duration(milliseconds: 500),
-//       vsync: this,
-//     );
-//     fabCurve = CurvedAnimation(
-//       parent: _fabAnimationController,
-//       curve: Interval(0.5, 1.0, curve: Curves.fastOutSlowIn),
-//     );
-//     borderRadiusCurve = CurvedAnimation(
-//       parent: _borderRadiusAnimationController,
-//       curve: Interval(0.5, 1.0, curve: Curves.fastOutSlowIn),
-//     );
-
-//     fabAnimation = Tween<double>(begin: 0, end: 1).animate(fabCurve);
-//     borderRadiusAnimation = Tween<double>(begin: 0, end: 1).animate(
-//       borderRadiusCurve,
-//     );
-
-//     _hideBottomBarAnimationController = AnimationController(
-//       duration: Duration(milliseconds: 200),
-//       vsync: this,
-//     );
-
-//     Future.delayed(
-//       Duration(seconds: 1),
-//       () => _fabAnimationController.forward(),
-//     );
-//     Future.delayed(
-//       Duration(seconds: 1),
-//       () => _borderRadiusAnimationController.forward(),
-//     );
-//   }
-
-//   bool onScrollNotification(ScrollNotification notification) {
-//     if (notification is UserScrollNotification &&
-//         notification.metrics.axis == Axis.vertical) {
-//       switch (notification.direction) {
-//         case ScrollDirection.forward:
-//           _hideBottomBarAnimationController.reverse();
-//           _fabAnimationController.forward(from: 0);
-//           break;
-//         case ScrollDirection.reverse:
-//           _hideBottomBarAnimationController.forward();
-//           _fabAnimationController.reverse(from: 1);
-//           break;
-//         case ScrollDirection.idle:
-//           break;
-//       }
-//     }
-//     return false;
-//   }
-
-//   @override
 //   Widget build(BuildContext context) {
-//     final colors = Theme.of(context).extension<CustomColorsTheme>()!;
 //     return Scaffold(
-//       extendBody: true,
-//       appBar: AppBar(
-//         title: Text(
-//           widget.title,
-//           style: TextStyle(color: Colors.white),
-//         ),
-//       ),
-//       body: NotificationListener<ScrollNotification>(
-//         onNotification: onScrollNotification,
-//         child: NavigationScreen(iconList[_bottomNavIndex]),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         child: Icon(
-//           Icons.brightness_3,
-//           color: AppTheme.colorGray,
-//         ),
-//         onPressed: () {
-//           _fabAnimationController.reset();
-//           _borderRadiusAnimationController.reset();
-//           _borderRadiusAnimationController.forward();
-//           _fabAnimationController.forward();
-//         },
-//       ),
-//       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-//       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
-//         itemCount: iconList.length,
-//         tabBuilder: (int index, bool isActive) {
-//           final color = isActive
-//               ? colors.activeNavigationBarColor
-//               : colors.notActiveNavigationBarColor;
-//           return Column(
-//             mainAxisSize: MainAxisSize.min,
+//       backgroundColor: Colors.black,
+//       body: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Row(
 //             mainAxisAlignment: MainAxisAlignment.center,
 //             children: [
-//               Icon(
-//                 iconList[index],
-//                 size: 24,
-//                 color: color,
-//               ),
-//               const SizedBox(height: 4),
-//               Padding(
-//                 padding: const EdgeInsets.symmetric(horizontal: 8),
-//                 child: AutoSizeText(
-//                   "brightness $index",
-//                   maxLines: 1,
-//                   style: TextStyle(color: color),
-//                   group: autoSizeGroup,
-//                 ),
-//               )
+//               buildTimeSelector(23, selectedHours, (value) {
+//                 setState(() => selectedHours = value);
+//               }),
+//               Text(" h ", style: textStyle()),
+//               buildTimeSelector(59, selectedMinutes, (value) {
+//                 setState(() => selectedMinutes = value);
+//               }),
+//               Text(" m ", style: textStyle()),
+//               buildTimeSelector(59, selectedSeconds, (value) {
+//                 setState(() => selectedSeconds = value);
+//               }),
+//               Text(" s ", style: textStyle()),
 //             ],
-//           );
-//         },
-//         backgroundColor: colors.bottomNavigationBarBackgroundColor,
-//         activeIndex: _bottomNavIndex,
-//         splashColor: colors.activeNavigationBarColor,
-//         notchAndCornersAnimation: borderRadiusAnimation,
-//         splashSpeedInMilliseconds: 300,
-//         notchSmoothness: NotchSmoothness.defaultEdge,
-//         gapLocation: GapLocation.center,
-//         leftCornerRadius: 32,
-//         rightCornerRadius: 32,
-//         onTap: (index) => setState(() => _bottomNavIndex = index),
-//         hideAnimationController: _hideBottomBarAnimationController,
-//         shadow: BoxShadow(
-//           offset: Offset(0, 1),
-//           blurRadius: 12,
-//           spreadRadius: 0.5,
-//           color: colors.activeNavigationBarColor,
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// class NavigationScreen extends StatefulWidget {
-//   final IconData iconData;
-
-//   NavigationScreen(this.iconData) : super();
-
-//   @override
-//   _NavigationScreenState createState() => _NavigationScreenState();
-// }
-
-// class _NavigationScreenState extends State<NavigationScreen>
-//     with TickerProviderStateMixin {
-//   late AnimationController _controller;
-//   late Animation<double> animation;
-
-//   @override
-//   void didUpdateWidget(NavigationScreen oldWidget) {
-//     super.didUpdateWidget(oldWidget);
-//     if (oldWidget.iconData != widget.iconData) {
-//       _startAnimation();
-//     }
-//   }
-
-//   @override
-//   void initState() {
-//     _controller = AnimationController(
-//       vsync: this,
-//       duration: Duration(milliseconds: 1000),
-//     );
-//     animation = CurvedAnimation(
-//       parent: _controller,
-//       curve: Curves.easeIn,
-//     );
-//     _controller.forward();
-//     super.initState();
-//   }
-
-//   _startAnimation() {
-//     _controller = AnimationController(
-//       vsync: this,
-//       duration: Duration(milliseconds: 1000),
-//     );
-//     animation = CurvedAnimation(
-//       parent: _controller,
-//       curve: Curves.easeIn,
-//     );
-//     _controller.forward();
-//   }
-
-//   @override
-//   void dispose() {
-//     _controller.dispose();
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final colors = Theme.of(context).extension<CustomColorsTheme>()!;
-//     return Container(
-//       color: Theme.of(context).colorScheme.background,
-//       child: ListView(
-//         children: [
-//           SizedBox(height: 64),
-//           Center(
-//             child: CircularRevealAnimation(
-//               animation: animation,
-//               centerOffset: Offset(80, 80),
-//               maxRadius: MediaQuery.of(context).size.longestSide * 1.1,
-//               child: Icon(
-//                 widget.iconData,
-//                 color: colors.activeNavigationBarColor,
-//                 size: 160,
-//               ),
-//             ),
 //           ),
+//           const SizedBox(height: 30),
+//           GridView.builder(
+//             shrinkWrap: true,
+//             physics: NeverScrollableScrollPhysics(),
+//             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//               crossAxisCount: 2,
+//               childAspectRatio: 3.5,
+//             ),
+//             itemCount: tasks.length + 1,
+//             itemBuilder: (context, index) {
+//               if (index == tasks.length) {
+//                 return GestureDetector(
+//                   onTap: () {},
+//                   child: Container(
+//                     margin: EdgeInsets.all(8),
+//                     decoration: BoxDecoration(
+//                       color: Colors.grey[800],
+//                       borderRadius: BorderRadius.circular(10),
+//                     ),
+//                     child: Icon(Icons.add, color: Colors.white),
+//                   ),
+//                 );
+//               }
+//               var task = tasks[index];
+//               return GestureDetector(
+//                 onTap: () {},
+//                 child: Container(
+//                   padding: EdgeInsets.all(
+//                       16), // Added padding to make the container bigger
+//                   decoration: BoxDecoration(
+//                     color: Colors.grey[900],
+//                     borderRadius: BorderRadius.circular(10),
+//                   ),
+//                   child: Column(
+//                     mainAxisAlignment: MainAxisAlignment.center,
+//                     children: [
+//                       Icon(task["icon"], color: Colors.white, size: 40),
+//                       Text(task["label"], style: textStyle(fontSize: 18)),
+//                       Text(task["time"],
+//                           style: textStyle(fontSize: 16, opacity: 0.7)),
+//                     ],
+//                   ),
+//                 ),
+//               );
+//             },
+//           ),
+//           const SizedBox(height: 30),
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               IconButton(
+//                 icon: Icon(Icons.refresh, color: Colors.white),
+//                 onPressed: () {},
+//               ),
+//               const SizedBox(width: 30),
+//               FloatingActionButton(
+//                 backgroundColor: Colors.blue,
+//                 child: Icon(Icons.play_arrow),
+//                 onPressed: () {},
+//               ),
+//               const SizedBox(width: 30),
+//               IconButton(
+//                 icon: Icon(Icons.notifications, color: Colors.white),
+//                 onPressed: () {},
+//               ),
+//             ],
+//           )
 //         ],
 //       ),
 //     );
 //   }
-// }
 
-// class AppTheme {
-//   static HexColor colorOrange = HexColor('#FFA400');
-//   static HexColor colorGray = HexColor('#373A36');
-
-//   static ThemeData get({required bool isLight}) {
-//     final base = isLight ? ThemeData.light() : ThemeData.dark();
-//     return base.copyWith(
-//       extensions: [
-//         CustomColorsTheme(
-//           colorLabelColor: isLight ? Colors.grey : const Color(0xFF7A7FB0),
-//           bottomNavigationBarBackgroundColor: isLight ? Colors.blue : colorGray,
-//           activeNavigationBarColor: isLight ? Colors.yellow : colorOrange,
-//           notActiveNavigationBarColor: Colors.white,
-//           shadowNavigationBarColor: isLight ? Colors.blue : colorOrange,
-//         )
-//       ],
-//       floatingActionButtonTheme: FloatingActionButtonThemeData(
-//         backgroundColor: isLight ? Colors.yellow : colorOrange,
-//       ),
-//       appBarTheme: AppBarTheme(
-//         backgroundColor: isLight ? Colors.blue : colorGray,
-//       ),
-//       colorScheme: base.colorScheme.copyWith(
-//         surface: isLight ? Colors.blue : colorGray,
-//         background: isLight ? Colors.white : colorGray,
+//   Widget buildTimeSelector(
+//       int max, int selectedValue, Function(int) onSelected) {
+//     return Container(
+//       height: 100,
+//       width: 60,
+//       child: ListWheelScrollView.useDelegate(
+//         perspective: 0.005,
+//         diameterRatio: 1.5,
+//         physics: FixedExtentScrollPhysics(),
+//         itemExtent: 40,
+//         onSelectedItemChanged: onSelected,
+//         childDelegate: ListWheelChildBuilderDelegate(
+//           builder: (context, index) {
+//             return Text(
+//               "$index",
+//               style: textStyle(
+//                   fontSize: 20, opacity: index == selectedValue ? 1.0 : 0.5),
+//             );
+//           },
+//           childCount: max + 1,
+//         ),
 //       ),
 //     );
 //   }
-// }
 
-// class HexColor extends Color {
-//   HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
-
-//   static int _getColorFromHex(String hexColor) {
-//     hexColor = hexColor.toUpperCase().replaceAll('#', '');
-//     if (hexColor.length == 6) {
-//       hexColor = 'FF' + hexColor;
-//     }
-//     return int.parse(hexColor, radix: 16);
-//   }
-// }
-
-// @immutable
-// class CustomColorsTheme extends ThemeExtension<CustomColorsTheme> {
-//   const CustomColorsTheme({
-//     required this.bottomNavigationBarBackgroundColor,
-//     required this.colorLabelColor,
-//     required this.activeNavigationBarColor,
-//     required this.notActiveNavigationBarColor,
-//     required this.shadowNavigationBarColor,
-//   });
-
-//   final Color bottomNavigationBarBackgroundColor;
-//   final Color colorLabelColor;
-//   final Color activeNavigationBarColor;
-//   final Color notActiveNavigationBarColor;
-//   final Color shadowNavigationBarColor;
-
-//   @override
-//   CustomColorsTheme copyWith({
-//     Color? bottomNavigationBarBackgroundColor,
-//     Color? colorLabelColor,
-//     Color? activeNavigationBarColor,
-//     Color? notActiveNavigationBarColor,
-//     Color? shadowNavigationBarColor,
-//   }) {
-//     return CustomColorsTheme(
-//       bottomNavigationBarBackgroundColor: bottomNavigationBarBackgroundColor ??
-//           this.bottomNavigationBarBackgroundColor,
-//       colorLabelColor: colorLabelColor ?? this.colorLabelColor,
-//       activeNavigationBarColor:
-//           activeNavigationBarColor ?? this.activeNavigationBarColor,
-//       notActiveNavigationBarColor:
-//           notActiveNavigationBarColor ?? this.notActiveNavigationBarColor,
-//       shadowNavigationBarColor:
-//           shadowNavigationBarColor ?? this.shadowNavigationBarColor,
-//     );
-//   }
-
-//   @override
-//   CustomColorsTheme lerp(
-//     ThemeExtension<CustomColorsTheme>? other,
-//     double t,
-//   ) {
-//     if (other is! CustomColorsTheme) {
-//       return this;
-//     }
-//     return CustomColorsTheme(
-//       bottomNavigationBarBackgroundColor: Color.lerp(
-//               bottomNavigationBarBackgroundColor,
-//               other.bottomNavigationBarBackgroundColor,
-//               t) ??
-//           bottomNavigationBarBackgroundColor,
-//       colorLabelColor: Color.lerp(colorLabelColor, other.colorLabelColor, t) ??
-//           colorLabelColor,
-//       activeNavigationBarColor: Color.lerp(
-//               activeNavigationBarColor, other.activeNavigationBarColor, t) ??
-//           activeNavigationBarColor,
-//       notActiveNavigationBarColor: Color.lerp(notActiveNavigationBarColor,
-//               other.notActiveNavigationBarColor, t) ??
-//           notActiveNavigationBarColor,
-//       shadowNavigationBarColor: Color.lerp(
-//               shadowNavigationBarColor, other.shadowNavigationBarColor, t) ??
-//           shadowNavigationBarColor,
+//   TextStyle textStyle({double fontSize = 18, double opacity = 1.0}) {
+//     return GoogleFonts.roboto(
+//       color: Colors.white.withOpacity(opacity),
+//       fontSize: fontSize,
+//       fontWeight: FontWeight.bold,
 //     );
 //   }
 // }
