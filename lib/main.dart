@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:practice_app/practice/test.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ChatScreen());
 }
 
 class MyApp extends StatelessWidget {
@@ -9,6 +10,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const MaterialApp(
+      home: ChatScreen(),
+    );
   }
 }
