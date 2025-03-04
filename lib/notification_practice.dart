@@ -7,10 +7,14 @@
 // import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:timezone/timezone.dart' as tz;
 
-// //await NotificationService.init();
+// void main() async {
+//   await NotificationService.init();
+
+//   runApp(NotificationPage());
+// }
+
 // class NotificationPage extends StatefulWidget {
-//   final Color color;
-//   const NotificationPage({super.key, required this.color});
+//   const NotificationPage({super.key});
 
 //   @override
 //   State<NotificationPage> createState() => _NotificationPageState();
