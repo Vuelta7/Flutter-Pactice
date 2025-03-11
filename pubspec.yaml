@@ -23,6 +23,7 @@ dependencies:
   flutter_chat_ui: ^1.6.15
   file_picker: ^8.3.5
   syncfusion_flutter_pdf: ^28.2.5
+  flutter_riverpod: ^2.6.1
 
 
 dev_dependencies:
