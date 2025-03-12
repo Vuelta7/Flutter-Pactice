@@ -11,13 +11,13 @@ class RiverpodPractice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: EasyRiverpod(),
+      home: Riverpod(),
     );
   }
 }
 
-class EasyRiverpod extends ConsumerWidget {
-  const EasyRiverpod({super.key});
+class Riverpod extends ConsumerWidget {
+  const Riverpod({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
