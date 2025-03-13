@@ -16,14 +16,13 @@ class ViewPokemon extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pokemonAsyncValue = ref.watch(pokemonProvider);
-    print(pokemonAsyncValue.hasValue);
     return MaterialApp(
       home: Scaffold(
         body: Center(
           child: pokemonAsyncValue.when(
             data: (pokemon) => Column(
               children: [
-                Image.network(pokemon.spriteUrl),
+                Image.network(pokemon.spritesUrl),
                 Text(pokemon.name),
                 Text(pokemon.id.toString()),
               ],
