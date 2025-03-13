@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+final riverpodEasy = StateProvider<int>((ref) {
+  return 0;
+});
 void main() {
   runApp(ProviderScope(child: RiverpodPractice()));
 }
@@ -42,7 +45,3 @@ class Riverpod extends ConsumerWidget {
     );
   }
 }
-
-final riverpodEasy = StateProvider<int>((ref) {
-  return 0;
-});

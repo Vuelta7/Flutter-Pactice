@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'riverpod_provider.g.dart';
 
+// dart run build_runner build
 @riverpod
 String city(Ref ref) => 'Malolos';
 
