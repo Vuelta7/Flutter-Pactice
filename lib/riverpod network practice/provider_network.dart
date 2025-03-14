@@ -9,8 +9,7 @@ part 'provider_network.g.dart';
 
 @riverpod
 Future<Activity> activity(Ref ref) async {
-  final response =
-      await http.get(Uri.https('https://pokeapi.co/api/v2/pokemon/greninja'));
+  final response = await http.get(Uri.https('boredapi.com', '/api/activity'));
 
   final json = jsonDecode(response.body) as Map<String, dynamic>;
   return Activity.fromJson(json);
