@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:practice_app/Pokemon%20API%20Practice/my_pokemons_controller.dart';
+import 'package:practice_app/Pokemon%20API%20Practice/my_pokemons_model.dart';
 
 final count = StreamProvider<int>((ref) {
   return Stream<int>.periodic(Duration(seconds: 1), (count) => count + 69);
@@ -24,7 +25,7 @@ class MyPokemonsView extends ConsumerWidget {
     final greninja = ref.watch(greninjaProvider);
     final metagross = ref.watch(metagrossProvider);
     final garchomp = ref.watch(garchompProvider);
-    final gallade = ref.watch(galladeProvider);
+    final AsyncValue<MyPokemonsModel> gallade = ref.watch(galladeProvider);
     final counting = ref.watch(count);
 
     return MaterialApp(
@@ -70,36 +71,36 @@ class MyPokemonsView extends ConsumerWidget {
                     error: (err, stack) => Text('bobo'),
                     loading: () => CircularProgressIndicator(),
                   ),
-                  metagross.when(
-                    data: (metagross) => Column(
-                      children: [
-                        Image.network(metagross.spritesUrl),
-                        Text(metagross.name),
-                      ],
-                    ),
-                    error: (err, stack) => Text('bobo'),
-                    loading: () => CircularProgressIndicator(),
-                  ),
-                  garchomp.when(
-                    data: (garchomp) => Column(
-                      children: [
-                        Image.network(garchomp.spritesUrl),
-                        Text(garchomp.name),
-                      ],
-                    ),
-                    error: (err, stack) => Text('bobo'),
-                    loading: () => CircularProgressIndicator(),
-                  ),
-                  gallade.when(
-                    data: (gallade) => Column(
-                      children: [
-                        Image.network(gallade.spritesUrl),
-                        Text(gallade.name),
-                      ],
-                    ),
-                    error: (err, stack) => Text('bobo'),
-                    loading: () => CircularProgressIndicator(),
-                  )
+                  switch (metagross) {
+                    AsyncData(:final value) => Column(
+                        children: [
+                          Image.network(value.spritesUrl),
+                          Text(value.name),
+                        ],
+                      ),
+                    AsyncError() => Text('bobo'),
+                    _ => CircularProgressIndicator(),
+                  },
+                  switch (garchomp) {
+                    AsyncData(:final value) => Column(
+                        children: [
+                          Image.network(value.spritesUrl),
+                          Text(value.name),
+                        ],
+                      ),
+                    AsyncError() => Text('bobo'),
+                    _ => CircularProgressIndicator(),
+                  },
+                  switch (gallade) {
+                    AsyncData(:final value) => Column(
+                        children: [
+                          Image.network(value.spritesUrl),
+                          Text(value.name),
+                        ],
+                      ),
+                    AsyncError() => Text('dumbass'),
+                    _ => CircularProgressIndicator(),
+                  }
                 ],
               ),
               counting.when(
