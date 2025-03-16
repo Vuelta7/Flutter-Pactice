@@ -60,46 +60,80 @@ class TodoList extends _$TodoList {
 void main(List<String> args) {
   runApp(
     ProviderScope(
-      child: PostPractice(),
+      child: MaterialApp(
+        home: PostPractice(),
+      ),
     ),
   );
 }
 
-class PostPractice extends ConsumerWidget {
+class PostPractice extends ConsumerStatefulWidget {
   const PostPractice({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<PostPractice> createState() => _PostPracticeState();
+}
+
+class _PostPracticeState extends ConsumerState<PostPractice> {
+  final TextEditingController task = TextEditingController();
+
+  @override
+  void dispose() {
+    task.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final todoList = ref.watch(todoListProvider);
 
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Todo List')),
-        body: todoList.when(
-          data: (todos) => ListView.builder(
-            itemCount: todos.length,
-            itemBuilder: (context, index) {
-              final todo = todos[index];
-              return ListTile(
-                title: Text(todo.title),
-                trailing: Icon(
-                  todo.completed ? Icons.check_circle : Icons.circle_outlined,
-                  color: todo.completed ? Colors.green : Colors.grey,
-                ),
-              );
-            },
-          ),
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (err, stack) => Center(child: Text('Error: $err')),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            ref.read(todoListProvider.notifier).addTodo(
-                  Todo(title: 'Tite'),
-                );
+    return Scaffold(
+      appBar: AppBar(title: const Text('Todo List')),
+      body: todoList.when(
+        data: (todos) => ListView.builder(
+          itemCount: todos.length,
+          itemBuilder: (context, index) {
+            final todo = todos[index];
+            return ListTile(
+              title: Text(todo.title),
+              trailing: Icon(
+                todo.completed ? Icons.check_circle : Icons.circle_outlined,
+                color: todo.completed ? Colors.green : Colors.grey,
+              ),
+            );
           },
-          child: const Icon(Icons.add),
         ),
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (err, stack) => Center(child: Text('Error: $err')),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Write a task'),
+                  content: TextField(
+                    controller: task,
+                  ),
+                  actions: [
+                    ElevatedButton(
+                      onPressed: () {
+                        if (task.text.isNotEmpty) {
+                          ref.read(todoListProvider.notifier).addTodo(
+                                Todo(title: task.text),
+                              );
+                        }
+                        task.clear();
+                        Navigator.pop(context);
+                      },
+                      child: Text('Add task'),
+                    )
+                  ],
+                );
+              });
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
