@@ -31,7 +31,6 @@ class TodoList extends _$TodoList {
         .get(Uri.parse('https://jsonplaceholder.typicode.com/todos?_limit=5'));
 
     if (response.statusCode == 200) {
-      print('gumana ata');
       return (jsonDecode(response.body) as List)
           .map((todo) => Todo.fromJson(todo))
           .toList();
