@@ -2,30 +2,21 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:http/http.dart' as http;
 
-class PokemonApis {
-  static const String pokeApi = 'https://pokeapi.co/api/v2/pokemon/';
-  static const String greninja = 'https://pokeapi.co/api/v2/pokemon/greninja';
-  static const String lucario = 'https://pokeapi.co/api/v2/pokemon/lucario';
-  static const String metagross = 'https://pokeapi.co/api/v2/pokemon/metagross';
-  static const String charizard = 'https://pokeapi.co/api/v2/pokemon/charizard';
-  static const String garchomp = 'https://pokeapi.co/api/v2/pokemon/garchomp';
-  static const String gallade = 'https://pokeapi.co/api/v2/pokemon/gallade';
-}
+part 'network_request_no.freezed.dart';
+part 'network_request_no.g.dart';
 
-class MyPokemonsModel {
-  final String name;
-  final String spritesUrl;
+@freezed
+abstract class MyPokemonsModel with _$MyPokemonsModel {
+  const factory MyPokemonsModel({
+    required String name,
+    required String spritesUrl,
+  }) = _MyPokemonsModel;
 
-  MyPokemonsModel({required this.name, required this.spritesUrl});
-
-  factory MyPokemonsModel.fromJson(Map<String, dynamic> json) {
-    return MyPokemonsModel(
-      name: json['name'],
-      spritesUrl: json['sprites']['front_default'],
-    );
-  }
+  factory MyPokemonsModel.fromJson(Map<String, dynamic> json) =>
+      _$MyPokemonsModelFromJson(json);
 }
 
 final greninjaProvider = FutureProvider<MyPokemonsModel>((ref) async {
@@ -184,4 +175,14 @@ class MyPokemonsView extends ConsumerWidget {
       ),
     );
   }
+}
+
+class PokemonApis {
+  static const String pokeApi = 'https://pokeapi.co/api/v2/pokemon/';
+  static const String greninja = 'https://pokeapi.co/api/v2/pokemon/greninja';
+  static const String lucario = 'https://pokeapi.co/api/v2/pokemon/lucario';
+  static const String metagross = 'https://pokeapi.co/api/v2/pokemon/metagross';
+  static const String charizard = 'https://pokeapi.co/api/v2/pokemon/charizard';
+  static const String garchomp = 'https://pokeapi.co/api/v2/pokemon/garchomp';
+  static const String gallade = 'https://pokeapi.co/api/v2/pokemon/gallade';
 }
