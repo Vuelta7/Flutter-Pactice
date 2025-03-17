@@ -1,6 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:practice_app/change%20notifier%20practice/change_notifier_viewmodel.dart';
+
+final providerPractice = ChangeNotifierProvider<ChangeNotifierPractice>((ref) {
+  return ChangeNotifierPractice(counter: 0);
+});
+
+class ChangeNotifierPractice extends ChangeNotifier {
+  int counter;
+  ChangeNotifierPractice({required this.counter});
+
+  void increment() {
+    counter++;
+    notifyListeners();
+  }
+
+  void decrement() {
+    counter--;
+    notifyListeners();
+  }
+}
 
 void main(List<String> args) {
   runApp(
@@ -23,15 +41,17 @@ class ChangeNotifierView extends ConsumerWidget {
             children: [
               Text(changeNotifierCounter.counter.toString()),
               ElevatedButton(
-                  onPressed: () {
-                    ref.read(providerPractice).increment();
-                  },
-                  child: Text('increment')),
+                onPressed: () {
+                  ref.read(providerPractice).increment();
+                },
+                child: Text('increment'),
+              ),
               ElevatedButton(
-                  onPressed: () {
-                    ref.read(providerPractice).decrement();
-                  },
-                  child: Text('decrement'))
+                onPressed: () {
+                  ref.read(providerPractice).decrement();
+                },
+                child: Text('decrement'),
+              )
             ],
           ),
         ),

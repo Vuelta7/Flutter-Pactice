@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'riverpod_provider.g.dart';
+part 'provider.g.dart';
 
+// provider is a constant value that cant be change
 // dart run build_runner build
 @riverpod
 String city(Ref ref) => 'Malolos';
