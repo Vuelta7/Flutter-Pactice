@@ -16,6 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MyPokemonsModel {
   String get name;
+  @JsonKey(name: 'sprites', fromJson: _spriteFromJson)
   String get spritesUrl;
 
   /// Create a copy of MyPokemonsModel
@@ -55,7 +56,9 @@ abstract mixin class $MyPokemonsModelCopyWith<$Res> {
           MyPokemonsModel value, $Res Function(MyPokemonsModel) _then) =
       _$MyPokemonsModelCopyWithImpl;
   @useResult
-  $Res call({String name, String spritesUrl});
+  $Res call(
+      {String name,
+      @JsonKey(name: 'sprites', fromJson: _spriteFromJson) String spritesUrl});
 }
 
 /// @nodoc
@@ -90,13 +93,17 @@ class _$MyPokemonsModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _MyPokemonsModel implements MyPokemonsModel {
-  const _MyPokemonsModel({required this.name, required this.spritesUrl});
+  const _MyPokemonsModel(
+      {required this.name,
+      @JsonKey(name: 'sprites', fromJson: _spriteFromJson)
+      required this.spritesUrl});
   factory _MyPokemonsModel.fromJson(Map<String, dynamic> json) =>
       _$MyPokemonsModelFromJson(json);
 
   @override
   final String name;
   @override
+  @JsonKey(name: 'sprites', fromJson: _spriteFromJson)
   final String spritesUrl;
 
   /// Create a copy of MyPokemonsModel
@@ -142,7 +149,9 @@ abstract mixin class _$MyPokemonsModelCopyWith<$Res>
       __$MyPokemonsModelCopyWithImpl;
   @override
   @useResult
-  $Res call({String name, String spritesUrl});
+  $Res call(
+      {String name,
+      @JsonKey(name: 'sprites', fromJson: _spriteFromJson) String spritesUrl});
 }
 
 /// @nodoc

@@ -12,11 +12,16 @@ part 'network_request_no.g.dart';
 abstract class MyPokemonsModel with _$MyPokemonsModel {
   const factory MyPokemonsModel({
     required String name,
+    @JsonKey(name: 'sprites', fromJson: _spriteFromJson)
     required String spritesUrl,
   }) = _MyPokemonsModel;
 
   factory MyPokemonsModel.fromJson(Map<String, dynamic> json) =>
       _$MyPokemonsModelFromJson(json);
+}
+
+String _spriteFromJson(Map<String, dynamic>? sprites) {
+  return sprites?['front_default'] ?? '';
 }
 
 final greninjaProvider = FutureProvider<MyPokemonsModel>((ref) async {
