@@ -12,7 +12,6 @@ part 'network_request_no.g.dart';
 abstract class MyPokemonsModel with _$MyPokemonsModel {
   const factory MyPokemonsModel({
     required String name,
-    @JsonKey(name: 'sprites', fromJson: _spriteFromJson)
     required String spritesUrl,
   }) = _MyPokemonsModel;
 
