@@ -29,6 +29,7 @@ dependencies:
   json_annotation: ^4.9.0
   http: ^1.3.0
   dio: ^5.8.0+1
+  lottie: ^3.3.1
 
 
 dev_dependencies:
@@ -44,5 +45,25 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+  fonts:
+    - family: press
+      fonts:
+        - asset: assets/PressStart2P-Regular.ttf
+
   assets:
     - assets/container.png
+    - assets/streakpet1.json
+    - assets/streakpet2.json
+    - assets/streakpet3.json
+    - assets/makequiz.json
+    - assets/leaderboard.json
+    - assets/digitalizequiz.json
+    - assets/folders.json
+    - assets/hints.json
+    - assets/effectbg.json
+    - assets/dnd.json
+    - assets/theme.json
+    - assets/confetti.json
+    - assets/award.json
+    - assets/loading.json
+    - assets/sadstar.json

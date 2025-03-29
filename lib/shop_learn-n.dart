@@ -89,14 +89,7 @@ class _ProductGridState extends State<ProductGrid> {
             crossAxisSpacing: 12,
             mainAxisSpacing: 12,
             children: products.map((product) {
-              return ProductCard(
-                product: product,
-                onFavoriteToggle: () {
-                  setState(() {
-                    product.isFavorite = !product.isFavorite;
-                  });
-                },
-              );
+              return ProductCard(product: product);
             }).toList(),
           ),
         ),
@@ -107,64 +100,63 @@ class _ProductGridState extends State<ProductGrid> {
 
 class ProductCard extends StatelessWidget {
   final Product product;
-  final VoidCallback onFavoriteToggle;
 
   const ProductCard({
     super.key,
     required this.product,
-    required this.onFavoriteToggle,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 180, // Adjust based on your needs
-      height: 240, // Adjust based on your needs
+      width: 180,
+      height: 240,
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/container.png'), // Path to your card image
-          fit: BoxFit.fill,
-        ),
+        color: product.bgColor,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black,
+            blurRadius: 20,
+            spreadRadius: 1,
+            offset: const Offset(2, 2),
+          ),
+        ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Center(
-                child: Image.asset(
-                  product.image,
-                  fit: BoxFit.contain,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(24),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Center(
+                  child: Image.asset(
+                    product.image,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              product.category,
-              style: TextStyle(
-                color: Colors.white70,
-                fontSize: 14,
+              SizedBox(height: 8),
+              Text(
+                product.name,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            SizedBox(height: 4),
-            Text(
-              product.name,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+              SizedBox(height: 4),
+              Text(
+                '\$ ${product.price.toStringAsFixed(2)}',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                ),
               ),
-            ),
-            SizedBox(height: 4),
-            Text(
-              '\$ ${product.price.toStringAsFixed(2)}',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
