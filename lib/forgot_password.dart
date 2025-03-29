@@ -24,9 +24,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   String _answer = '';
 
   final List<String> securityQuestions = [
+    "What is your username?",
+    "What is your password?",
     "What is your pet's name?",
     "How many points do you have?",
-    "How many hint counts have you used?",
+    "How many hint counts do you have?",
   ];
 
   @override
@@ -42,7 +44,35 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Select a security question:'),
+              Text('Select a 2 security question:'),
+              DropdownButtonFormField<String>(
+                value: _selectedQuestion,
+                items: securityQuestions.map((String question) {
+                  return DropdownMenuItem<String>(
+                    value: question,
+                    child: Text(question),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedQuestion = value;
+                  });
+                },
+                validator: (value) =>
+                    value == null ? 'Please select a question' : null,
+              ),
+              SizedBox(height: 20),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Your Answer'),
+                onChanged: (value) {
+                  setState(() {
+                    _answer = value;
+                  });
+                },
+                validator: (value) =>
+                    value!.isEmpty ? 'Please enter an answer' : null,
+              ),
+              SizedBox(height: 20),
               DropdownButtonFormField<String>(
                 value: _selectedQuestion,
                 items: securityQuestions.map((String question) {
@@ -73,8 +103,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
+                  print('answer: $_answer');
                   if (_formKey.currentState!.validate()) {
-                    // TODO: Implement verification logic
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Processing your request...')),
                     );
@@ -82,6 +112,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 },
                 child: Text('Submit'),
               ),
+              Text('Email us at: LearnNCustomerServices@gmail.com.'),
             ],
           ),
         ),
