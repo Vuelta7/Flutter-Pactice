@@ -24,54 +24,42 @@ class ProductGrid extends StatefulWidget {
 }
 
 class _ProductGridState extends State<ProductGrid> {
-  // Sample product data
+  // Sample product data // Example only
   final List<Product> products = [
     Product(
       name: 'PEUGEOT - LR01',
-      category: 'Road Bike',
       price: 1999.99,
       image: 'assets/road_bike.png',
-      isFavorite: true,
       bgColor: const Color(0xFF2D3748),
     ),
     Product(
       name: 'SMITH - Trade',
-      category: 'Road Helmet',
       price: 120.00,
       image: 'assets/helmet.png',
-      isFavorite: false,
       bgColor: const Color(0xFF6B7280),
     ),
     Product(
       name: 'SMITH - Trade',
-      category: 'Road Helmet',
       price: 120.00,
       image: 'assets/helmet.png',
-      isFavorite: true,
       bgColor: const Color(0xFF6B7280),
     ),
     Product(
       name: 'PILOT - Chromoly',
-      category: 'Mountain Bike',
       price: 1999.99,
       image: 'assets/mountain_bike.png',
-      isFavorite: false,
       bgColor: const Color(0xFF6B7280),
     ),
     Product(
       name: 'PILOT - Chromoly',
-      category: 'Mountain Bike',
       price: 1999.99,
       image: 'assets/mountain_bike.png',
-      isFavorite: false,
       bgColor: const Color(0xFF6B7280),
     ),
     Product(
       name: 'SMITH - Trade',
-      category: 'Road Helmet',
       price: 120.00,
       image: 'assets/helmet.png',
-      isFavorite: false,
       bgColor: const Color(0xFF6B7280),
     ),
   ];
@@ -165,18 +153,14 @@ class ProductCard extends StatelessWidget {
 
 class Product {
   final String name;
-  final String category;
   final double price;
   final String image;
-  bool isFavorite;
   final Color bgColor;
 
   Product({
     required this.name,
-    required this.category,
     required this.price,
     required this.image,
-    required this.isFavorite,
     required this.bgColor,
   });
 }
