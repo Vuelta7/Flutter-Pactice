@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final biasUnis = Provider<String>((ref) => 'Gehlee');
+final biasUnis = Provider<String>((ref) {
+  return 'Gehlee';
+});
 
 void main() {
   runApp(
