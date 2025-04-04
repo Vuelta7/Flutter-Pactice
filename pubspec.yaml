@@ -31,6 +31,7 @@ dependencies:
   dio: ^5.8.0+1
   lottie: ^3.3.1
   google_generative_ai: ^0.4.6
+  liquid_swipe: ^3.1.0
 
 
 dev_dependencies:
@@ -48,9 +49,9 @@ flutter:
   uses-material-design: true
 
   fonts:
-    - family: press
+    - family: PressStart2P
       fonts:
-        - asset: assets/PressStart2P-Regular.ttf
+        - asset: assets/fonts/PressStart2P-Regular.ttf
 
   assets:
     - assets/container.png
@@ -69,3 +70,5 @@ flutter:
     - assets/award.json
     - assets/loading.json
     - assets/sadstar.json
+    - assets/chili_garlic.png
+    - assets/logo_icon.png
