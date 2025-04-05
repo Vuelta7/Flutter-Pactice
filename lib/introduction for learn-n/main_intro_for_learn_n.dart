@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:practice_app/introduction%20for%20learn-n/splash_page.dart';
 
 void main(List<String> args) {
+  // debugPaintSizeEnabled = true;
+
   runApp(
     const ProviderScope(
       child: MaterialApp(

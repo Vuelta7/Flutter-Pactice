@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:practice_app/introduction%20for%20learn-n/liquid_swipe.dart';
 import 'package:practice_app/introduction%20for%20learn-n/widget/introduction_utils.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
@@ -43,6 +44,11 @@ class SplashScreenState extends ConsumerState<SplashScreen>
 
     Future.delayed(
       const Duration(seconds: 3),
+      () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const LiquidSwipeIntro(),
+          )),
     );
   }
 

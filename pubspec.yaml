@@ -51,7 +51,7 @@ flutter:
   fonts:
     - family: PressStart2P
       fonts:
-        - asset: assets/fonts/PressStart2P-Regular.ttf
+        - asset: assets/PressStart2P-Regular.ttf
 
   assets:
     - assets/container.png
@@ -72,3 +72,4 @@ flutter:
     - assets/sadstar.json
     - assets/chili_garlic.png
     - assets/logo_icon.png
+    - assets/fire.json
