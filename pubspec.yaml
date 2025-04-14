@@ -32,6 +32,7 @@ dependencies:
   lottie: ^3.3.1
   google_generative_ai: ^0.4.6
   liquid_swipe: ^3.1.0
+  carousel_slider: ^5.0.0
 
 
 dev_dependencies:

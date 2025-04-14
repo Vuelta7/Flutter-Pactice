@@ -162,38 +162,37 @@ class _PDFQuestionGeneratorState extends State<PDFQuestionGenerator> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Expanded(
-              child:
-                  questionsAndAnswers.isNotEmpty
-                      ? ListView.builder(
-                        itemCount: questionsAndAnswers.length,
-                        itemBuilder: (context, index) {
-                          final qa = questionsAndAnswers[index];
-                          return Card(
-                            margin: EdgeInsets.symmetric(vertical: 8),
-                            child: Padding(
-                              padding: EdgeInsets.all(12),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Q: ${qa['question']}",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
+              child: questionsAndAnswers.isNotEmpty
+                  ? ListView.builder(
+                      itemCount: questionsAndAnswers.length,
+                      itemBuilder: (context, index) {
+                        final qa = questionsAndAnswers[index];
+                        return Card(
+                          margin: EdgeInsets.symmetric(vertical: 8),
+                          child: Padding(
+                            padding: EdgeInsets.all(12),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Q: ${qa['question']}",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
                                   ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    "A: ${qa['answer']}",
-                                    style: TextStyle(fontSize: 14),
-                                  ),
-                                ],
-                              ),
+                                ),
+                                SizedBox(height: 4),
+                                Text(
+                                  "A: ${qa['answer']}",
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              ],
                             ),
-                          );
-                        },
-                      )
-                      : Text("No questions generated."),
+                          ),
+                        );
+                      },
+                    )
+                  : Text("No questions generated."),
             ),
           ],
         ),
