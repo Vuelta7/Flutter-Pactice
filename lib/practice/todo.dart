@@ -29,12 +29,8 @@ class _TodoState extends State<Todo> {
           color: Colors.blueGrey,
           child: Column(
             children: [
-              ...todoList.map((item) => ListTile(
-                    title: Text(item),
-                  )),
-              TextField(
-                controller: todo,
-              ),
+              ...todoList.map((item) => ListTile(title: Text(item))),
+              TextField(controller: todo),
               ElevatedButton(
                 onPressed: () {
                   setState(() {
@@ -43,7 +39,7 @@ class _TodoState extends State<Todo> {
                   });
                 },
                 child: Text('Add task'),
-              )
+              ),
             ],
           ),
         ),

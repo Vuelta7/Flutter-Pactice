@@ -23,23 +23,21 @@ class _CounterState extends State<Counter> {
             children: [
               Text(num.toString()),
               ElevatedButton(
-                  onPressed: () {
-                    setState(
-                      () {
-                        num++;
-                      },
-                    );
-                  },
-                  child: Text('increment')),
+                onPressed: () {
+                  setState(() {
+                    num++;
+                  });
+                },
+                child: Text('increment'),
+              ),
               ElevatedButton(
-                  onPressed: () {
-                    setState(
-                      () {
-                        num--;
-                      },
-                    );
-                  },
-                  child: Text('decrement')),
+                onPressed: () {
+                  setState(() {
+                    num--;
+                  });
+                },
+                child: Text('decrement'),
+              ),
             ],
           ),
         ),
